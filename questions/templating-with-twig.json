@@ -1,0 +1,150 @@
+[
+  {
+    "question": "What variables doesn’t exist in the app global variable ?",
+    "answers" : [
+      {
+        "answer" : "app.user",
+        "valid" : true
+      },
+      {
+        "answer" : "app.query_params",
+        "valid" : false
+      },
+      {
+        "answer" : "app.request",
+        "valid" : true
+      },
+      {
+        "answer" : "app.theme",
+        "valid" : false
+      },
+      {
+        "answer" : "app.session",
+        "valid" : true
+      },
+      {
+        "answer" : "app.response",
+        "valid" : false
+      },
+      {
+        "answer" : "app.flashes",
+        "valid" : true
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What naming conventions are true about Twig ?",
+    "answers" : [
+      {
+        "answer" : "filenames must have two extensions (e.g. .html.twig, .xml.twig, …)",
+        "valid" : true
+      },
+      {
+        "answer" : "filenames can have .twig extension (this is an equivalent to .html.twig)",
+        "valid" : false
+      },
+      {
+        "answer" : "filenames and directories must use snake case (e.g. admin/default_theme/blog/base_index.html.twig)",
+        "valid" : true
+      },
+      {
+        "answer" : "filenames must use snake case and directories must use camelCase (e.g. admin/defaultTheme/blog/base_index.html.twig)",
+        "valid" : false
+      },
+      {
+        "answer" : "fragments filename must start like others filename (e.g. fragment.html.twig)",
+        "valid" : false
+      },
+      {
+        "answer" : "fragments filename must start with _ (e.g. _fragment.html.twig)",
+        "valid" : true
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What is the content result of child.html.twig ?",
+    "answers" : [
+      {
+        "answer" : "1",
+        "valid" : false
+      },
+      {
+        "answer" : "2",
+        "valid" : false
+      },
+      {
+        "answer" : "3",
+        "valid" : false
+      },
+      {
+        "answer" : "4",
+        "valid" : true
+      }
+    ],
+    "explanations": [],
+    "images": [
+      "templating-with-twig/1.png",
+      "templating-with-twig/2.png"
+    ],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "Can we reuse the content of parent sidebar block in child block ?",
+    "answers" : [
+      {
+        "answer" : "Yes with {{ parent() }}",
+        "valid" : true
+      },
+      {
+        "answer" : "Yes with {{ sidebar() }}",
+        "valid" : false
+      },
+      {
+        "answer" : "No, it is not possible",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [
+      "templating-with-twig/1.png"
+    ],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "Which statements about loops are true?",
+    "answers" : [
+      {
+        "answer" : "loop.length, loop.revindex, loop.revindex0 and loop.last are only available on PHP arrays or any object implementing the Countable interface",
+        "valid" : true
+      },
+      {
+        "answer" : "loop.index and loop.revindex start at 0",
+        "valid" : false
+      },
+      {
+        "answer" : "loop.parent exist",
+        "valid" : true
+      },
+      {
+        "answer" : "loop.size exist",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [
+      "templating-with-twig/1.png"
+    ],
+    "versionMin": null,
+    "versionMax": null
+  }
+]

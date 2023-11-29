@@ -1,0 +1,145 @@
+[
+  {
+    "question": "What are 2 route paths in this controller ?",
+    "answers" : [
+      {
+        "answer" : "/{_locale} and /foo/{_locale}/posts/{slug}",
+        "valid" : false
+      },
+      {
+        "answer" : "/blog/{_locale} and /foo/{_locale}/posts/{slug}",
+        "valid" : false
+      },
+      {
+        "answer" : "/blog/{_locale} and /blog/foo/{_locale}/posts/{slug}",
+        "valid" : true
+      },
+      {
+        "answer" : "/{_locale} and /blog/foo/{_locale}/posts/{slug}",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [
+      "routing/1.png"
+    ],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What commands can be used to debug our routes?",
+    "answers" : [
+      {
+        "answer" : "php bin/console router:debug",
+        "valid" : false
+      },
+      {
+        "answer" : "php bin/console debug:router",
+        "valid" : true
+      },
+      {
+        "answer" : "php bin/console router:match",
+        "valid" : true
+      },
+      {
+        "answer" : "php bin/console debug:routes",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What options can be configured in the Route annotation?",
+    "answers" : [
+      {
+        "answer" : "localizedPaths",
+        "valid" : false
+      },
+      {
+        "answer" : "host",
+        "valid" : true
+      },
+      {
+        "answer" : "condition",
+        "valid" : true
+      },
+      {
+        "answer" : "priority",
+        "valid" : true
+      },
+      {
+        "answer" : "env",
+        "valid" : true
+      },
+      {
+        "answer" : "route",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What happens when you pass parameters that are not part of the route definition in generateUrl() function?",
+    "answers" : [
+      {
+        "answer" : "A RouteNotFoundException is thrown",
+        "valid" : false
+      },
+      {
+        "answer" : "Nothing",
+        "valid" : false
+      },
+      {
+        "answer" : "The parameters are included in the generatedUrls as a query string",
+        "valid" : true
+      },
+      {
+        "answer" : "A UnexpectedRouteParameterException is thrown",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What are the special internal routing attributes included by default in Symfony?",
+    "answers" : [
+      {
+        "answer" : "_controller",
+        "valid" : true
+      },
+      {
+        "answer" : "_format",
+        "valid" : true
+      },
+      {
+        "answer" : "_language",
+        "valid" : false
+      },
+      {
+        "answer" : "_fragment",
+        "valid" : true
+      },
+      {
+        "answer" : "_view",
+        "valid" : false
+      },
+      {
+        "answer" : "_locale",
+        "valid" : true
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  }
+]

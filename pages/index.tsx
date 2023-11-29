@@ -1,118 +1,183 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import React, {useEffect, useState} from "react";
+import { symfonySubjects } from "@/questions/questions";
 
 export default function Home() {
+  const [minVersion, setMinVersion] = useState<number>(0);
+  const [maxVersion, setMaxVersion] = useState<number>(99);
+  const [requestedSubject, setRequestedSubject] = useState<string>('All');
+  const [currentSubject, setCurrentSubject] = useState<string>('');
+  const [question, setQuestion] = useState<QuestionInterface|null>(null);
+  const [checkedAnswers, setCheckedAnswers] = useState<AnswerInterface[]>([]);
+  const [isShowResult, setIsShowResult] = useState<boolean>(false);
+
+  useEffect(() => {
+    getNewQuestion();
+  }, [minVersion, maxVersion, requestedSubject]);
+
+  const getNewQuestion = () => {
+    setIsShowResult(false);
+    setCheckedAnswers([]);
+
+    let questions: QuestionInterface[] = [];
+    let requestedSubjectIndex = symfonySubjects.findIndex((value) => value.subject === requestedSubject);
+    const min = maxVersion > minVersion ? minVersion : maxVersion;
+    const max = maxVersion > minVersion ? maxVersion : minVersion;
+    const symfonyMaxVersion = process.env.SYMFONY_MAX_VERSION ? parseFloat(process.env.SYMFONY_MAX_VERSION) : 6.4;
+    const filter = (question: QuestionInterface) => {
+      return (question.versionMin && question.versionMin >= min && question.versionMin <= max) ||
+        (question.versionMax && question.versionMax >= min && question.versionMax <= max) ||
+        (min === 0 && question.versionMin === null) ||
+        (max === 99 && question.versionMax === null) ||
+        (null === question.versionMin && null == question.versionMax);
+    }
+
+    if (-1 !== requestedSubjectIndex) {
+      if (symfonySubjects[requestedSubjectIndex].questions.length <= 0) {
+        requestedSubjectIndex = -1;
+        setRequestedSubject('All');
+      } else {
+        questions = symfonySubjects[requestedSubjectIndex].questions.filter(filter);
+        setCurrentSubject(symfonySubjects[requestedSubjectIndex].subject);
+      }
+    }
+
+    if (-1 === requestedSubjectIndex) {
+      const symfonySubjectIndex = Math.floor(Math.random() * symfonySubjects.length);
+      questions = symfonySubjects[symfonySubjectIndex].questions.filter(filter);
+      if (0 === questions.length) {
+        getNewQuestion();
+        return;
+      }
+      setCurrentSubject(symfonySubjects[symfonySubjectIndex].subject);
+    }
+    let question = questions[Math.floor(Math.random() * questions.length)];
+    question.answers = question.answers.sort(() => Math.random() - 0.5);
+    setQuestion(question)
+  }
+
+  const toggleAnswer = (answer: AnswerInterface) => {
+    const isAlreadyChecked = typeof checkedAnswers.find((checkedAnswer) => checkedAnswer.answer === answer.answer) !== 'undefined';
+    if (isAlreadyChecked) {
+      setCheckedAnswers(checkedAnswers.filter(checkedAnswer => checkedAnswer.answer !== answer.answer));
+    } else {
+      setCheckedAnswers([...(checkedAnswers), answer]);
+    }
+  }
+
+  const isChecked = (answer: AnswerInterface) => {
+    return -1 !== checkedAnswers.findIndex((checkedAnswer) => checkedAnswer.answer === answer.answer);
+  }
+
+  const hasMultipleAnswers = () => {
+    return 2 <= (question?.answers.filter(answer => answer.valid).length || 0);
+  }
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="mx-32 my-4">
+      <div className="mb-4 flex flex-row gap-8">
+        <div>
+          <label htmlFor="versionMin" className="mr-2">Version min</label>
+          <select name="versionMin" onChange={(e) => setMinVersion(parseFloat(e.target.value))}>
+            <option value={0} selected={0 === minVersion}>None</option>
+            <option value={6.0} selected={6.0 === minVersion}>6.0</option>
+            <option value={6.1} selected={6.1 === minVersion}>6.1</option>
+            <option value={6.2} selected={6.2 === minVersion}>6.2</option>
+            <option value={6.3} selected={6.3 === minVersion}>6.3</option>
+            <option value={6.4} selected={6.4 === minVersion}>6.4</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="versionMax" className="mr-2">Version max</label>
+          <select name="versionMax" onChange={(e) => setMaxVersion(parseFloat(e.target.value))}>
+            <option value={99} selected={99 === maxVersion}>None</option>
+            <option value={6.0} selected={6.0 === maxVersion}>6.0</option>
+            <option value={6.1} selected={6.1 === maxVersion}>6.1</option>
+            <option value={6.2} selected={6.2 === maxVersion}>6.2</option>
+            <option value={6.3} selected={6.3 === maxVersion}>6.3</option>
+            <option value={6.4} selected={6.4 === maxVersion}>6.4</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="versionMax" className="mr-2">Subject</label>
+          <select name="versionMax" onChange={(e) => setRequestedSubject(e.target.value)}>
+            <option key="All" value="All" selected={requestedSubject === 'All'}>All</option>
+            {Object.values(symfonySubjects).map((subject) => <option key={subject.subject} value={subject.subject} selected={requestedSubject === subject.subject}>{subject.subject}</option>)}
+          </select>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div>
+        <h1 className="text-2xl mb-4">{currentSubject} : {question?.question} {hasMultipleAnswers() && '(multiple answers)'}</h1>
+
+        {question?.images.length && question?.images.length > 0 ? (
+            <div className="flex flex-row gap-2 items-start mb-4">
+              {question?.images.map(image => {
+                return <img key={image} src={`/images/${image}`}  alt={'image pour la question'}/>
+              })}
+            </div>
+          ) : <></>
+        }
+
+        {question?.answers && question?.answers.length && (
+          <div className="mb-4">
+            {question?.answers.map((answer => {
+                return <>
+                  <input onChange={() => toggleAnswer(answer)} className="mr-2" type="checkbox" key={answer.answer} name={answer.answer} id={answer.answer} value={answer.answer} checked={isChecked(answer)}/>
+                  <label htmlFor={answer.answer}>{answer.answer}</label>
+                  <br />
+                </>
+              }
+            ))}
+          </div>
+        )}
+
+        <div className="flex flex-row gap-4">
+          {!isShowResult && (
+            <>
+              <button className="px-4 py-2 bg-red-400 rounded mb-4" onClick={getNewQuestion}>Skip question</button>
+              <button onClick={() => setIsShowResult(true)} className="px-4 py-2 bg-green-400 rounded mb-4">Show answers</button>
+            </>
+          )}
+          {isShowResult && <button onClick={getNewQuestion} className="px-4 py-2 bg-green-400 rounded mb-4">Next question</button>}
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {isShowResult && (
+        <div className="border border-black rounded p-8">
+          <div className={'flex flex-row mb-8 gap-4 border border-black p-2 w-max'}>
+            <div>
+              <input type={"checkbox"} checked={true} className={'mb-1 px-2 mr-2 accent-green-500'} />
+              <label>Good answer</label>
+            </div>
+            <div>
+              <input type={"checkbox"} className={'mb-1 px-2 mr-2'} />
+              <label className={'line-through'}>Bad answer</label>
+            </div>
+            <div>
+              <input type={"checkbox"} checked={true} className={'mb-1 px-2 mr-2 accent-red-500'} />
+              <label>Missing answer</label>
+            </div>
+          </div>
+          {question?.explanations.map(explanation => <p key={explanation} className="mb-1">{explanation}</p>) }
+          {question?.answers.map(answer => {
+            const isChecked = checkedAnswers.find(checkedAnswers => checkedAnswers.answer === answer.answer) !== undefined;
+            const isGoodAnswer = answer.valid;
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+            return <>
+              <input key={answer.answer} type="checkbox" checked={(isChecked && isGoodAnswer) || (!isChecked && isGoodAnswer)} className={
+                `mb-1 px-2 mr-2 
+                ${!isChecked && isGoodAnswer ? `accent-red-500 border-2 border-red-500 rounded` :
+                  isChecked && !isGoodAnswer ? `text-red-400` :
+                    isChecked && isGoodAnswer ? `accent-green-500` : ''}`
+              } />
+              <label className={`${isChecked && !isGoodAnswer && 'line-through'}`}>{answer.answer}</label>
+              <br />
+            </>
+          })}
+        </div>
+      )}
+    </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
   )
 }

@@ -1,0 +1,135 @@
+[
+  {
+    "question": "Which design patterns are used by Event Dispatcher Component ?",
+    "answers" : [
+      {
+        "answer" : "Mediator",
+        "valid" : true
+      },
+      {
+        "answer" : "Command",
+        "valid" : false
+      },
+      {
+        "answer" : "State",
+        "valid" : false
+      },
+      {
+        "answer" : "Observer",
+        "valid" : true
+      }
+    ],
+    "explanations": [
+      "Mediator : It restricts direct communication between objects, forcing them to collaborate only via a mediator object",
+      "Observer : subscription mechanism for sending notifications to multiple objects, about events concerning the objects they observe"
+    ],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "Which kernel events exists ?",
+    "answers" : [
+      {
+        "answer" : "kernel.request",
+        "valid" : true
+      },
+      {
+        "answer" : "kernel.command",
+        "valid" : false
+      },
+      {
+        "answer" : "kernel.view",
+        "valid" : true
+      },
+      {
+        "answer" : "kernel.exception",
+        "valid" : true
+      },
+      {
+        "answer" : "kernel.terminate",
+        "valid" : true
+      },
+      {
+        "answer" : "kernel.messenger",
+        "valid" : false
+      }
+    ],
+    "explanations": [
+      "kernel.request : dispatched before the controller is determined",
+      "kernel.view  : dispatched after the controlled has been executed and if the return value is not a Symfony\\Component\\HttpFoundation\\Response",
+      "kernel.exception : dispatched as soon as an error occurs during the handling of the HTTP request",
+      "kernel.terminate : dispatched after the response has been sent"
+    ],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What is the recommended best practice for writing functional tests to test a URL?",
+    "answers" : [
+      {
+        "answer" : "Fill directly the URL",
+        "valid" : true
+      },
+      {
+        "answer" : "Use the URL generator",
+        "valid" : false
+      },
+      {
+        "answer" : "Do not use URLs in functional tests",
+        "valid" : false
+      },
+      {
+        "answer" : "There are no specific recommendations",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "What license does Symfony come under?",
+    "answers" : [
+      {
+        "answer" : "GNU GPLv3",
+        "valid" : false
+      },
+      {
+        "answer" : "Apache License 2.0",
+        "valid" : false
+      },
+      {
+        "answer" : "MIT License",
+        "valid" : true
+      },
+      {
+        "answer" : "GNU AGPLv3",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  },
+  {
+    "question": "We know that Symfony's code is licensed under the MIT License, is this the case for all components?",
+    "answers" : [
+      {
+        "answer" : "Yes, all components have the same license",
+        "valid" : true
+      },
+      {
+        "answer" : "No, some components have their own licenses",
+        "valid" : false
+      }
+    ],
+    "explanations": [],
+    "images": [],
+    "versionMin": null,
+    "versionMax": null
+  }
+]
