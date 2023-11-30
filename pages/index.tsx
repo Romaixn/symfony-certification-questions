@@ -32,7 +32,6 @@ export default function Home(props: any) {
     let requestedSubjectIndex = symfonySubjects.findIndex((value) => value.subject === requestedSubject);
     const min = maxVersion > minVersion ? minVersion : maxVersion;
     const max = maxVersion > minVersion ? maxVersion : minVersion;
-    const symfonyMaxVersion = process.env.SYMFONY_MAX_VERSION ? parseFloat(process.env.SYMFONY_MAX_VERSION) : 6.4;
     const filter = (question: QuestionInterface) => {
       return (question.versionMin && question.versionMin >= min && question.versionMin <= max) ||
         (question.versionMax && question.versionMax >= min && question.versionMax <= max) ||
@@ -136,11 +135,11 @@ export default function Home(props: any) {
         {question?.answers && question?.answers.length && (
           <div className="mb-4">
             {question?.answers.map((answer => {
-                return <>
-                  <input onChange={() => toggleAnswer(answer)} className="mr-2" type="checkbox" key={answer.answer} name={answer.answer} id={answer.answer} value={answer.answer} checked={isChecked(answer)}/>
-                  <label htmlFor={answer.answer}>{answer.answer}</label>
+                return <div key={answer.answer} className="flex flex-row items-start">
+                  <input onChange={() => toggleAnswer(answer)} className="mr-2 mt-1" type="checkbox" key={answer.answer} name={answer.answer} id={answer.answer} value={answer.answer} checked={isChecked(answer)}/>
+                  <label htmlFor={answer.answer}><Markdown rehypePlugins={[rehypeHighlight]} className="answer mb-1">{answer.answer}</Markdown></label>
                   <br />
-                </>
+                </div>
               }
             ))}
           </div>
@@ -165,7 +164,7 @@ export default function Home(props: any) {
               <label>Good answer</label>
             </div>
             <div>
-              <input type={"checkbox"} className={'mb-1 px-2 mr-2'} />
+              <input type={"checkbox"} checked={false} className={'mb-1 px-2 mr-2'} />
               <label className={'line-through'}>Bad answer</label>
             </div>
             <div>

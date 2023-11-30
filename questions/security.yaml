@@ -2,14 +2,122 @@ symfony-subject:
   name: Security
   questions:
     -
-      question: "What methods have to be present for a class implementing `UserInterface`? (multiples answers)"
-      answers:
-        - {answer: "getName", valid: false}
-        - {answer: "getFullname", valid: false}
-        - {answer: "getUsername", valid: true}
-        - {answer: "getRoles", valid: true}
-        - {answer: "getPassword", valid: false}
-      explanation: "`getPassword` is defined by `PasswordAuthenticatedUserInterface`"
-      images: ~
-      versionMin: ~
-      versionMax: ~
+        question: "What methods have to be present for a class implementing `UserInterface`? (multiples answers)"
+        answers:
+            - {answer: "getName", valid: false}
+            - {answer: "getFullname", valid: false}
+            - {answer: "getUsername", valid: true}
+            - {answer: "getRoles", valid: true}
+            - {answer: "getPassword", valid: false}
+        explanation: "`getPassword` is defined by `PasswordAuthenticatedUserInterface`"
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: What are 4 `built` -in User Provider in Symfony ?
+        answers:
+            - { answer: "Entity User Provider", valid: true }
+            - { answer: "Memory User Provider", valid: true }
+            - { answer: "Chain User Provider", valid: true }
+            - { answer: "LDAP User Provider", valid: true }
+            - { answer: "Session User Provider", valid: false }
+            - { answer: "Test User Provider", valid: false }
+            - { answer: "File User Provider", valid: false }
+            - { answer: "Cloud User Provider", valid: false }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: By default, which of this parameters exist and are required with Entity User Provider?
+        answers:
+            - { answer: "`class`", valid: true }
+            - { answer: "`property`", valid: true }
+            - { answer: "`manager_name`", valid: false }
+            - { answer: "`password_property`", valid: false }
+        explanation: "`class` and `property` exist and are required, `manager_name` exists but it is optionnal and `password_property` doesn't exist."
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: If you want to use a custom query to load user with Doctrine, what interface your UserRepository should implements, and what function its should define?
+        answers:
+            - { answer: "This is not possible :-(", valid: false }
+            - { answer: "It implements `Symfony\\Bridge\\Doctrine\\Security\\User\\UserLoaderInterface` and define a `loadUserByIdentifier(): ?User` function", valid: true }
+            - { answer: "It implements `Symfony\\Bridge\\Doctrine\\Security\\User\\UserRepositoryLoadingInterface` and define a `loadUserByIdentifier(): User` function", valid: false }
+            - { answer: "It implements `Symfony\\Bridge\\Doctrine\\Security\\User\\UserIdentifierLoaderInterface` and define a `loadUserByIdentifier(): ?User` function", valid: false }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: Which statements are true about Memory User Provider?
+        answers:
+            - { answer: "It is not recommended to use in real application", valid: true }
+            - { answer: "Users are stored in `config/packages/security.yaml` file", valid: true }
+            - { answer: "It can be used only in dev environment", valid: false }
+            - { answer: "Users are stored in `/config/packages/[environment]/users.yaml` file", valid: false }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: Which statements are true about Chain User Provider?
+        answers:
+            - { answer: "It allows to use several User Provider", valid: true }
+            - { answer: "The order in which \"sub-providers\" are configured is important because Symfony will request this \"sub-providers\" in the same order", valid: true }
+            - { answer: "It allows to load a specific User only with a long password", valid: false }
+            - { answer: "The lenght of the password should is greater than 15 characters", valid: false }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: Which statements are true about Custom User Provider?
+        answers:
+            - { answer: "It allows to create custom logic to load User otherwise (with API, legacy database connection, ...)", valid: true }
+            - { answer: "The Custom UserProvider should implements `Symfony\\Component\\Security\\Core\\User\\UserProviderInterface`", valid: true }
+            - { answer: "The Custom UserProvider can implements `Symfony\\Component\\Security\\Core\\User\\PasswordUpgraderInterface`", valid: true }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: Why can you implement Symfony\Component\Security\Core\User\PasswordUpgraderInterface in a Custom User Provider?
+        answers:
+            - { answer: "To upgrade the hashed password on your application", valid: true }
+            - { answer: "To upgrade the hashed password where the user is stored (in API, in a legacy database, ...)", valid: false }
+            - { answer: "This interface doesn't exist", valid: false }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: Which package should you install to use LDAP User Provider?
+        answers:
+            - { answer: "symfony/ldap", valid: true }
+            - { answer: "symfony/security-bundle", valid: false }
+            - { answer: "symfony/ldap-security-bundle", valid: false }
+            - { answer: "symfony/ldap-user-provider", valid: false }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~
+
+    -
+        question: If you use the "auto" hasher, which lenght for the password property in database is recommended?
+        answers:
+            - { answer: "just the lenght of a current hashed", valid: false }
+            - { answer: "255, because the lenght of hashed password can change if the hasher change also", valid: true }
+        explanation: The "auto" hasher selects the best available hasher. If a new hasher is installed, it can become the new best hasher and the lenght of new hashed passwords can change.
+        images: ~
+        versionMin: ~
+        versionMax: ~

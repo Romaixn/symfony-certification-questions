@@ -17,3 +17,7 @@
 .explanation ul {
     list-style-type: disc;
 }
+
+*:not(pre) > code {
+    @apply bg-gray-200 px-1 py-[2px] rounded text-sm;
+}
