@@ -20,30 +20,41 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Add new questions
 
-Fill `.json` files in `/questions` folder with JSON object look like :
-```javascript
-{
-    "question": "Your question",
-    "answers": [
-      {
-        "answer": "First answer",
-        "valid": true
-      },
-      {
-        "answer": "Second answer",
-        "valid": false
-      },
-      // ...
-    ],
-    "explanations": [
-        "Explanations about the answer showed when the answer is validated by the user",
-        // ...
-    ],
-    "images": [
-        "path/to/image.png",
-        // ...
-    ],
-    "versionMin": 6.0, // version minimal of Symfony or null
-    "versionMax": null // version maximal of Symfony or null
-}
+Fill `.yaml` files in `/questions` folder with object as following :
+``` yaml
+symfony-subject:
+    name: Controllers
+    questions:
+        -
+          question: Your question
+          answers:
+              - {answer: "First anwser", valid: true}
+              - {answer: "Second anwser", valid: false}
+              - {answer: "Third anwser", valid: true}
+          explanation: ~
+          images: ~
+          versionMin: 6.1 
+          versionMax: ~
+        -
+          question: |
+              Your other question with **Markdown** syntax
+              ``` php
+              function foo()
+              {
+                  print_r('bar');
+              }
+              ```
+          answers:
+              - {answer: "First anwser", valid: true}
+              - {answer: "Second anwser", valid: false}
+              - {answer: "Third anwser", valid: true}
+          explanation: |
+              Explanations can contain Markdown too.
+              - item 1
+              - item 2
+          images: ~
+          versionMin: ~
+          versionMax: ~
 ```
+
+If you're the first one to add questions for a subject, don't forget to uncomment the filename in `questions.ts`.

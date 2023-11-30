@@ -1,0 +1,104 @@
+symfony-subject:
+    name: Controllers
+    questions:
+        -
+          question: What methods are present in Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController ? (6.0, max)
+          answers:
+              - {answer: "forward()", valid: true}
+              - {answer: "file()", valid: true}
+              - {answer: "renderForm()", valid: true}
+              - {answer: "createNotFoundException()", valid: true}
+              - {answer: "addLink()", valid: true}
+              - {answer: "sendEarlyHints()", valid: true}
+          explanation: |
+              - `forward()` ⇒ transfers the request to another route
+              - `file()` ⇒ returns a BinaryFileResponse
+              - `renderForm()` ⇒ (deprecated) was originally used to call ->createView() on all FormInterface given as parameters. Now, ->render() takes care of this automatically
+              - `createNotFoundException()` ⇒ creates a NotFoundHttpException()
+              - `addLink()` ⇒ adds a link to the Link response header
+              - `sendEarlyHints()` ⇒ (new in 6.3) tells the client to start downloading resources (e.g. font, css, js script, ...) before the final response
+          images: ~
+          versionMin: ~
+          versionMax: ~
+
+        -
+            question: |
+                In a controller, how to display the file content in the browser (without the user having to download the file) ?
+                ``` php
+                // A
+                return $this->file('/path/to/some_file.pdf');
+                
+                // B
+                return $this->file(new File('/path/to/some_file.pdf'));
+                
+                // C
+                return $this->file('/path/to/some_file.pdf', 'custom_name.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+                
+                // D
+                return $this->file(new File('/path/to/some_file.pdf'), 'custom_name.pdf', ResponseHeaderBag::DISPOSITION_INLINE);
+                
+                // E
+                return $this->file('/path/to/some_file.pdf', 'custom_name.pdf', ResponseHeaderBag::DISPOSITION_ATTACHEMENT);
+                
+                // F
+                return $this->file(new File('/path/to/some_file.pdf'), 'custom_name.pdf', ResponseHeaderBag::DISPOSITION_ATTACHEMENT);
+                ```
+
+            answers:
+                - {answer: "A", valid: false}
+                - {answer: "B", valid: false}
+                - {answer: "C", valid: true}
+                - {answer: "D", valid: true}
+                - {answer: "E", valid: false}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: Which informations are true about sessions in Symfony ?
+            answers:
+                - {answer: "The session is stored by default in PHP directory outside Symfony project", valid: true}
+                - {answer: "The session is stored by default inside the Symfony project", valid: false}
+                - {answer: "We can configure sessions to store it in a database", valid: true}
+                - {answer: "Sessions can only be stored in files", valid: false}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: Is it possible to retrieve the user's preferred language with the Request object?
+            answers:
+                - {answer: "Yes, with $request->getPreferredLanguage();", valid: true}
+                - {answer: "Yes, with $request→getLanguages();", valid: true}
+                - {answer: "Yes, with $request→getPhpDefaultLocale();", valid: false}
+                - {answer: "No", valid: false}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: What `$session->get('foo');` returns if foo doesn’t exist ?
+            answers:
+                - {answer: "SessionNotFoundException", valid: false}
+                - {answer: "null", valid: true}
+                - {answer: "false", valid: false}
+                - {answer: "void", valid: false}
+            explanation: "`get()` take a second parameter `$default = null`"
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: What is a “bag” in Symfony Session ?
+            answers:
+                - {answer: "A PHP Object", valid: true}
+                - {answer: "A tool that stores all user browser preference", valid: false}
+                - {answer: "A container for storing session data", valid: true}
+                - {answer: "A tool that stores all of user’s action", valid: false}
+            explanation: PHP object that encapsulates a specific dataset of attributes or flash messages
+            images: ~
+            versionMin: ~
+            versionMax: ~
