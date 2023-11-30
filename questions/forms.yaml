@@ -1,67 +1,195 @@
 symfony-subject:
-    name: Controllers
-    questions:
-        -
-            question: Which command allows to get more informations about forms in Symfony ?
-            answers:
-                - {answer: "php bin/console form:debug", valid: false}
-                - {answer: "php bin/console debug:form", valid: true}
-                - {answer: "php bin/console debug:form:type", valid: false}
-                - {answer: "php bin/console debug:type", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+  name: Forms
+  questions:
+    - question: Which command allows to get more informations about forms in Symfony ?
+      answers:
+        - { answer: "php bin/console form:debug", valid: false }
+        - { answer: "php bin/console debug:form", valid: true }
+        - { answer: "php bin/console debug:form:type", valid: false }
+        - { answer: "php bin/console debug:type", valid: false }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                Up to 6.1 version, how to pass a form to Twig in a controller ?
-                
-                ``` php
-                // 1
-                return $this->render('task/new.html.twig', [
-                    'form' => $form->createView(),
-                ]);
-                
-                // 2
-                return $this->render('task/new.html.twig', [
-                    'form' => $form,
-                ]);
-                
-                // 3
-                return $this->render('task/new.html.twig', [
-                    'form' => $form->getView(),
-                ]);
-                
-                // 4
-                return $this->renderForm('task/new.html.twig', [
-                    'form' => $form,
-                ]);
-                ```
-            answers:
-                - {answer: "1", valid: true}
-                - {answer: "2", valid: false}
-                - {answer: "3", valid: false}
-                - {answer: "4", valid: true}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: 6.1
+    - question: |
+        Up to 6.1 version, how to pass a form to Twig in a controller ?
+        
+        ``` php
+        // 1
+        return $this->render('task/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+        
+        // 2
+        return $this->render('task/new.html.twig', [
+            'form' => $form,
+        ]);
+        
+        // 3
+        return $this->render('task/new.html.twig', [
+            'form' => $form->getView(),
+        ]);
+        
+        // 4
+        return $this->renderForm('task/new.html.twig', [
+            'form' => $form,
+        ]);
+        ```
+      answers:
+        - { answer: "1", valid: true }
+        - { answer: "2", valid: false }
+        - { answer: "3", valid: false }
+        - { answer: "4", valid: true }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: 6.1
 
-        -
-            question: |
-                Which theme will have the priority ?
-                
-                ``` yaml
-                # config/packages/twig.yaml
-                twig:
-                    form_themes: ['bootstrap_5_horizontal_layout.html.twig', 'tailwind_2_layout.html.twig']
-                ```
+    - question: |
+        Which theme will have the priority ?
+        
+        ``` yaml
+        # config/packages/twig.yaml
+        twig:
+            form_themes: ['bootstrap_5_horizontal_layout.html.twig', 'tailwind_2_layout.html.twig']
+        ```
 
-            answers:
-                - {answer: "bootstrap_5_horizontal_layout.html.twig", valid: false}
-                - {answer: "tailwind_2_layout.html.twig", valid: true}
-            explanation: Last themes have a priority over the firsts
-            images: ~
-            versionMin: ~
-            versionMax: ~
+      answers:
+        - { answer: "bootstrap_5_horizontal_layout.html.twig", valid: false }
+        - { answer: "tailwind_2_layout.html.twig", valid: true }
+      explanation: Last themes have a priority over the firsts
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    - question: What's the option name that provide type of the object managed by a form?
+      answers:
+        - { answer: "type", valid: false }
+        - { answer: "object_type", valid: false }
+        - { answer: "class", valid: false }
+        - { answer: "data_class", valid: true }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    - question: How should I set following options to have radio buttons rendered by my `ChoiceType`?
+      answers:
+        - { answer: "['multiple' => true, 'expanded' => true]", valid: false }
+        - { answer: "['multiple' => true, 'expanded' => false]", valid: false }
+        - { answer: "['multiple' => false, 'expanded' => true]", valid: true }
+        - { answer: "['multiple' => false, 'expanded' => false]", valid: false }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    - question: |
+        Which one is correct?
+        (`$builder` is a `FormBuilderInterface`)
+        
+        - 1st :
+        ``` php
+        $builder->add('sport', ChoiceType::class, [
+            'choices' => [
+                'Roller' => 'r',
+                'Tennis' => 't',
+                'Basketball' => 'b',
+            ],
+        ]);
+        ```
+        
+        - 2nd :
+        ``` php
+        $builder->add('sport', ChoiceType::class, [
+            'choices' => [
+                'r' => 'Roller',
+                't' => 'Tennis',
+                'b' => 'Basketball',
+            ],
+        ]);
+        ```
+      answers:
+        - { answer: "first", valid: true }
+        - { answer: "second", valid: false }
+      explanation: "`choices` array takes select label as **key**"
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    - question: Which Symfony built-in FormType should I use to show a price in my form?
+      answers:
+        - { answer: "PriceType", valid: false }
+        - { answer: "MoneyType", valid: true }
+        - { answer: "RangeType", valid: false }
+        - { answer: "CurrencyValueType", valid: false }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    - question: How to get field id in Twig ?
+      answers:
+        - { answer: "{{ myForm.myField.vars.id }}", valid: true }
+        - { answer: "{{ myForm.myFiled.html.id}}", valid: false }
+        - { answer: "{{ myForm.myField.id }}", valid: false }
+        - { answer: "{{ myForm.myField.elementId }}", valid: false }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    - question: How to retrieve posted value of an unmapped field?
+      answers:
+        - { answer: "$form['myField']", valid: false }
+        - { answer: "$form['myField']->value", valid: false }
+        - { answer: "$form['myField']->getData()", valid: true }
+        - { answer: "$form['myField']->getPostedValue()", valid: false }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    - question: |
+        Given :
+        ``` php
+        // src/Entity/Post.php
+        class Post
+        {
+            #[ORM\Column(type: Types::STRING, nullable: true)]
+            private ?string $title = null;
+        
+            // …
+        }
+        
+        
+        // src/Form/PostType.php
+        final class PostType extends AbstractType
+        {
+            public function buildForm(FormBuilderInterface $builder, array $options): void
+            {
+                $builder
+                    ->add('title', TextType::class)
+                    // …
+                ;
+            }
+        
+            public function configureOptions(OptionsResolver $resolver): void
+            {
+                $resolver->setDefaults([
+                    'data_class' => Post::class,
+                ]);
+            }
+            ```
+            What will be the value of the `required` option of `title`?
+
+      answers:
+        - { answer: "true", valid: true }
+        - { answer: "false", valid: false }
+      explanation: |
+        This is the default value for `required` option. Since the type (`TextType`) is provided, there is no guessing.
+        Therefore, the doctrine nullable attribute is not used.
+      images: ~
+      versionMin: ~
+      versionMax: ~

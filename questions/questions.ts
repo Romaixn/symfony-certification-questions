@@ -8,7 +8,7 @@ export const fetchQuestions = () => {
       // 'automated-tests.yaml',
       // 'console.yaml',
       'controllers.yaml',
-      // 'data-validation.yaml',
+      'data-validation.yaml',
       // 'dependency-injection.yaml,
       'forms.yaml',
       'http.yaml',
@@ -16,7 +16,7 @@ export const fetchQuestions = () => {
       // 'miscellaneous.yaml',
       'php.yaml',
       'routing.yaml',
-      // 'security.yaml',
+      'security.yaml',
       'symfony-architecture.yaml',
       'templating-with-twig.yaml',
   ];

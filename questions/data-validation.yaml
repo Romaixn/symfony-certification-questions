@@ -1,3 +1,36 @@
 symfony-subject:
   name: Data validation
-  questions: ~
+  questions:
+    -
+      question: |
+        Given
+        ``` php
+        <?php
+  
+        use Symfony\Component\Validator\Constraints as Assert;
+  
+        class User
+        {
+          #[Assert\NotBlank]
+          private ?string $username;
+
+          #[Assert\NotBlank]
+          private ?string $password;
+
+          #[Assert\IsTrue(groups: ['strict'], message: 'username_password_identical')]
+          public function hasPasswordDifferentToUsername(): bool
+            {
+              return $this->username !== $this->password;
+            }
+        }
+        ```
+        How to validate that username and password are not blank *before* they are not identical?
+      answers:
+        - {answer: "add `#[Assert\\GroupSequence(['Default', 'strict'])]` at class level", valid: false}
+        - {answer: "add `#[Assert\\GroupSequence(['User', 'strict'])]` at class level", valid: true}
+        - {answer: "add `#[Assert\\GroupPriority(['strict' => 999])]` at class level", valid: false}
+        - {answer: "it's not possible", valid: false}
+      explanation: "`#[Assert\\GroupSequence(['Default', 'strict'])]` will cause an infinite loop"
+      images: ~
+      versionMin: ~
+      versionMax: ~
