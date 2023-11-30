@@ -1,3 +1,15 @@
 symfony-subject:
   name: Security
-  questions: ~
+  questions:
+    -
+      question: "What methods have to be present for a class implementing `UserInterface`? (multiples answers)"
+      answers:
+        - {answer: "getName", valid: false}
+        - {answer: "getFullname", valid: false}
+        - {answer: "getUsername", valid: true}
+        - {answer: "getRoles", valid: true}
+        - {answer: "getPassword", valid: false}
+      explanation: "`getPassword` is defined by `PasswordAuthenticatedUserInterface`"
+      images: ~
+      versionMin: ~
+      versionMax: ~

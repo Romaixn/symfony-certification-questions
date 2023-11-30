@@ -102,3 +102,15 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+    -
+      question: How to get the value of the cookie named `FOO`
+      answers:
+        - { answer: "$request->getCookie('FOO')", valid: false }
+        - { answer: "$request->getCookies()['FOO']", valid: false }
+        - { answer: "$request->cookies->get('FOO']", valid: true }
+        - { answer: "$request->getSession()->getCookie('FOO')", valid: false }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
