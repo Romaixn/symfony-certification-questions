@@ -1,360 +1,360 @@
 symfony-subject:
-    name: PHP
-    questions:
-        -
-            question: What values can the boolean type take?
-            answers:
-                - {answer: "0 or 1", valid: true}
-                - {answer: "true or false", valid: true}
-                - {answer: "All except NULL", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+  name: PHP
+  questions:
+    -
+      question: What values can the boolean type take?
+      answers:
+        - {answer: "0 or 1", valid: true}
+        - {answer: "true or false", valid: true}
+        - {answer: "All except NULL", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What will be the type specified in the output?
-                ``` php
-                <?php
-                
-                class Foo
-                {
-                    public function hello(): static|self {
-                        return new static;
-                    }
-                }
-                
-                class Bar extends Foo
-                {
-                    public function bar(): parent|self {
-                        return (new Foo)->hello();
-                    }
-                }
-                
-                class Baz extends Bar
-                {
-                    public function baz() {
-                        return $this->bar();
-                    }
-                }
-                
-                var_dump((new Baz)->baz());
-                ```
-            answers:
-                - {answer: "Foo", valid: true}
-                - {answer: "Bar", valid: false}
-                - {answer: "Baz", valid: false}
-                - {answer: "Error", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What will be the type specified in the output?
+        ``` php
+        <?php
+        
+        class Foo
+        {
+            public function hello(): static|self {
+                return new static;
+            }
+        }
+        
+        class Bar extends Foo
+        {
+            public function bar(): parent|self {
+                return (new Foo)->hello();
+            }
+        }
+        
+        class Baz extends Bar
+        {
+            public function baz() {
+                return $this->bar();
+            }
+        }
+        
+        var_dump((new Baz)->baz());
+        ```
+      answers:
+        - {answer: "Foo", valid: true}
+        - {answer: "Bar", valid: false}
+        - {answer: "Baz", valid: false}
+        - {answer: "Error", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What will be the values of `$a` and `$b`?
-                ``` php
-                $x = 2;
-                $a = $x++; // 2 avant assignation 3 après
-                $b = ++$x; // ajoute +1 avant assignation
-                ```
-            answers:
-                - {answer: "$a = 3 and $b = 4", valid: false}
-                - {answer: "$a = 2 and $b = 4", valid: true}
-                - {answer: "$a = 3 and $b = 3", valid: false}
-                - {answer: "$a = 2 and $b = 3", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What will be the values of `$a` and `$b`?
+        ``` php
+        $x = 2;
+        $a = $x++; // 2 avant assignation 3 après
+        $b = ++$x; // ajoute +1 avant assignation
+        ```
+      answers:
+        - {answer: "$a = 3 and $b = 4", valid: false}
+        - {answer: "$a = 2 and $b = 4", valid: true}
+        - {answer: "$a = 3 and $b = 3", valid: false}
+        - {answer: "$a = 2 and $b = 3", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What will be the values of $a and $b ?
-                ``` php
-                $a = false && true;
-                $b = false OR true;
-                ```
-            answers:
-                - {answer: "$a = true and $b = false", valid: false}
-                - {answer: "$a = true and $b = true", valid: false}
-                - {answer: "$a = false and $b = false", valid: true}
-                - {answer: "$a = false and $b = true", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What will be the values of $a and $b ?
+        ``` php
+        $a = false && true;
+        $b = false OR true;
+        ```
+      answers:
+        - {answer: "$a = true and $b = false", valid: false}
+        - {answer: "$a = true and $b = true", valid: false}
+        - {answer: "$a = false and $b = false", valid: true}
+        - {answer: "$a = false and $b = true", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: Which assertions about Enum is true?
-            answers:
-                - {answer: "An Enumeration may not implement an interface", valid: false}
-                - {answer: "Constructors and Destructors are forbidden", valid: true}
-                - {answer: "An Enumeration may have zero cases", valid: true}
-                - {answer: "Static or object properties are allowed", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: Which assertions about Enum is true?
+      answers:
+        - {answer: "An Enumeration may not implement an interface", valid: false}
+        - {answer: "Constructors and Destructors are forbidden", valid: true}
+        - {answer: "An Enumeration may have zero cases", valid: true}
+        - {answer: "Static or object properties are allowed", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: What cannot be declared as final?
-            answers:
-                - {answer: "Classes", valid: false}
-                - {answer: "Properties", valid: true}
-                - {answer: "Methods", valid: false}
-                - {answer: "Constants", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: What cannot be declared as final?
+      answers:
+        - {answer: "Classes", valid: false}
+        - {answer: "Properties", valid: true}
+        - {answer: "Methods", valid: false}
+        - {answer: "Constants", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: What is true about NAMESPACE constant?
-            answers:
-                - {answer: "Its value is a string that contains the current namespace name", valid: true}
-                - {answer: "In global, un-namespaced code, its value is false", valid: false}
-                - {answer: "You can call Foo::__NAMESPACE__ to obtain the fully qualified name of the class Foo", valid: false}
-                - {answer: "It was introduced in PHP 5.3", valid: true}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: What is true about NAMESPACE constant?
+      answers:
+        - {answer: "Its value is a string that contains the current namespace name", valid: true}
+        - {answer: "In global, un-namespaced code, its value is false", valid: false}
+        - {answer: "You can call Foo::__NAMESPACE__ to obtain the fully qualified name of the class Foo", valid: false}
+        - {answer: "It was introduced in PHP 5.3", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: "Complete the sentence: A final class cannot be…"
-            answers:
-                - {answer: "implemented", valid: false}
-                - {answer: "instantiated", valid: false}
-                - {answer: "decorated", valid: false}
-                - {answer: "extended", valid: true}
-                - {answer: "cloned", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: "Complete the sentence: A final class cannot be…"
+      answers:
+        - {answer: "implemented", valid: false}
+        - {answer: "instantiated", valid: false}
+        - {answer: "decorated", valid: false}
+        - {answer: "extended", valid: true}
+        - {answer: "cloned", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: Which method is called when a script tries to call an object as a function?
-            answers:
-                - {answer: "__call()", valid: false}
-                - {answer: "__construct()", valid: false}
-                - {answer: "__invoke()", valid: true}
-                - {answer: "__get()", valid: false}
-                - {answer: "__autoload()", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: Which method is called when a script tries to call an object as a function?
+      answers:
+        - {answer: "__call()", valid: false}
+        - {answer: "__construct()", valid: false}
+        - {answer: "__invoke()", valid: true}
+        - {answer: "__get()", valid: false}
+        - {answer: "__autoload()", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What is the result of this expression?
-                ``` php
-                print("bbb" & "bbc");
-                ```
-            answers:
-                - {answer: "\"bbb\"", valid: true}
-                - {answer: "\"bbc\"", valid: false}
-                - {answer: "true", valid: false}
-                - {answer: "false", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What is the result of this expression?
+        ``` php
+        print("bbb" & "bbc");
+        ```
+      answers:
+        - {answer: "\"bbb\"", valid: true}
+        - {answer: "\"bbc\"", valid: false}
+        - {answer: "true", valid: false}
+        - {answer: "false", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What is the result of this expression?
-                ``` php
-                if (NAN === NAN) print "ok";
-                ```
-            answers:
-                - {answer: "Affiche ok", valid: false}
-                - {answer: "N’affiche pas ok", valid: true}
-                - {answer: "Syntax Error", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What is the result of this expression?
+        ``` php
+        if (NAN === NAN) print "ok";
+        ```
+      answers:
+        - {answer: "Affiche ok", valid: false}
+        - {answer: "N’affiche pas ok", valid: true}
+        - {answer: "Syntax Error", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What is the result of this expression?
-                ``` php
-                function hello(): never
-                {
-                    print "hello";
-                }
-                ```
-            answers:
-                - {answer: "Affiche hello", valid: true}
-                - {answer: "Erreur quand on declare la fonction", valid: false}
-                - {answer: "Erreur quand on appelle la fonction", valid: true}
-            explanation: |
-                never return type is similar to the existing void return type, but the never type guarantees that the program will terminate or throw.
-                In other words, a function/method declared never must not call return at all, not even with return
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What is the result of this expression?
+        ``` php
+        function hello(): never
+        {
+            print "hello";
+        }
+        ```
+      answers:
+        - {answer: "Affiche hello", valid: true}
+        - {answer: "Erreur quand on declare la fonction", valid: false}
+        - {answer: "Erreur quand on appelle la fonction", valid: true}
+      explanation: |
+        never return type is similar to the existing void return type, but the never type guarantees that the program will terminate or throw.
+        In other words, a function/method declared never must not call return at all, not even with return
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What is the result of this expression?
-                ``` php
-                print ("2 444" + 8_666);
-                ```
-            answers:
-                - {answer: "2 4448_666", valid: false}
-                - {answer: "11110", valid: false}
-                - {answer: "8668", valid: false}
-                - {answer: "Erreur", valid: true}
-                - {answer: "Waring", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What is the result of this expression?
+        ``` php
+        print ("2 444" + 8_666);
+        ```
+      answers:
+        - {answer: "2 4448_666", valid: false}
+        - {answer: "11110", valid: false}
+        - {answer: "8668", valid: false}
+        - {answer: "Erreur", valid: true}
+        - {answer: "Waring", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What is the result of this expression?
-                ``` php
-                if ("0") print "ok";
-                ```
-            answers:
-                - {answer: "Affiche ok", valid: false}
-                - {answer: "N’affiche pas ok", valid: true}
-                - {answer: "Erreur", valid: false}
-                - {answer: "Warning", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What is the result of this expression?
+        ``` php
+        if ("0") print "ok";
+        ```
+      answers:
+        - {answer: "Affiche ok", valid: false}
+        - {answer: "N’affiche pas ok", valid: true}
+        - {answer: "Erreur", valid: false}
+        - {answer: "Warning", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: |
-                What will this PHP code return?
-                ``` php
-                trait A
-                {
-                    private string $response = '0';
-                
-                    function multiplication() {
-                        return "3 * 0";
-                    }
-                }
-                
-                trait B
-                {
-                    function division() {
-                        return "3 / 0";
-                    }
-                }
-                
-                class Hello
-                {
-                    use A;
-                    use B;
-                
-                    function foo() {
-                        return sprintf('%s = %s', $this->response ? $this->multiplication() : $this->division, $this->response);
-                    }
-                }
-                
-                var_dump((new Hello())->foo());
-                ```
-            answers:
-                - {answer: "3 * 0 = 0", valid: false}
-                - {answer: "3 / 0 = 0", valid: true}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: |
+        What will this PHP code return?
+        ``` php
+        trait A
+        {
+            private string $response = '0';
+        
+            function multiplication() {
+                return "3 * 0";
+            }
+        }
+        
+        trait B
+        {
+            function division() {
+                return "3 / 0";
+            }
+        }
+        
+        class Hello
+        {
+            use A;
+            use B;
+        
+            function foo() {
+                return sprintf('%s = %s', $this->response ? $this->multiplication() : $this->division, $this->response);
+            }
+        }
+        
+        var_dump((new Hello())->foo());
+        ```
+      answers:
+        - {answer: "3 * 0 = 0", valid: false}
+        - {answer: "3 / 0 = 0", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: How to obtain a string representation of an SPLQueue $queue?
-            answers:
-                - {answer: "$queue->toString()", valid: false}
-                - {answer: "unserialize($queue)", valid: false}
-                - {answer: "implode(',', iterator_to_array($queue))", valid: true}
-                - {answer: "$queue->serialize()", valid: true}
-                - {answer: "$queue->unserialize()", valid: false}
-                - {answer: "serialize($queue->toArray())", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: How to obtain a string representation of an SPLQueue $queue?
+      answers:
+        - {answer: "$queue->toString()", valid: false}
+        - {answer: "unserialize($queue)", valid: false}
+        - {answer: "implode(',', iterator_to_array($queue))", valid: true}
+        - {answer: "$queue->serialize()", valid: true}
+        - {answer: "$queue->unserialize()", valid: false}
+        - {answer: "serialize($queue->toArray())", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: Which method declaration is valid?
-            answers:
-                - {answer: "public function getName(){};", valid: false}
-                - {answer: "public function getName(): string;", valid: true}
-                - {answer: "public function getName(){}: string", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: Which method declaration is valid?
+      answers:
+        - {answer: "public function getName(){};", valid: false}
+        - {answer: "public function getName(): string;", valid: true}
+        - {answer: "public function getName(){}: string", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: What values can the Boolean type take?
-            answers:
-                - {answer: "0 ou 1", valid: true}
-                - {answer: "true ou false", valid: true}
-                - {answer: "Toutes sauf NULL", valid: false}
-                - {answer: "$queue->serialize()", valid: true}
-                - {answer: "$queue->unserialize()", valid: false}
-                - {answer: "serialize($queue->toArray())", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: What values can the Boolean type take?
+      answers:
+        - {answer: "0 ou 1", valid: true}
+        - {answer: "true ou false", valid: true}
+        - {answer: "Toutes sauf NULL", valid: false}
+        - {answer: "$queue->serialize()", valid: true}
+        - {answer: "$queue->unserialize()", valid: false}
+        - {answer: "serialize($queue->toArray())", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: What array functions preserving associative keys?
-            answers:
-                - {answer: "arsort()", valid: true}
-                - {answer: "ksort()", valid: false}
-                - {answer: "uksort()", valid: false}
-                - {answer: "asort()", valid: true}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: What array functions preserving associative keys?
+      answers:
+        - {answer: "arsort()", valid: true}
+        - {answer: "ksort()", valid: false}
+        - {answer: "uksort()", valid: false}
+        - {answer: "asort()", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: How to generate a random number?
-            answers:
-                - {answer: "with rand() function", valid: true}
-                - {answer: "with random() function", valid: false}
-                - {answer: "with mt_rand() function", valid: true}
-                - {answer: "with Random\\Randomizer() class", valid: true}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: How to generate a random number?
+      answers:
+        - {answer: "with rand() function", valid: true}
+        - {answer: "with random() function", valid: false}
+        - {answer: "with mt_rand() function", valid: true}
+        - {answer: "with Random\\Randomizer() class", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: How to check if a variable is an integer?
-            answers:
-                - {answer: "with is_int() function", valid: true}
-                - {answer: "with is_integer() function", valid: true}
-                - {answer: "with is_long() function", valid: true}
-                - {answer: "with is_number() function", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: How to check if a variable is an integer?
+      answers:
+        - {answer: "with is_int() function", valid: true}
+        - {answer: "with is_integer() function", valid: true}
+        - {answer: "with is_long() function", valid: true}
+        - {answer: "with is_number() function", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
 
-        -
-            question: Which extensions allows to debug a PHP code?
-            answers:
-                - {answer: "phpdbg", valid: true}
-                - {answer: "xDebug", valid: true}
-                - {answer: "Debugger", valid: false}
-                - {answer: "SimpleDebug", valid: false}
-            explanation: ~
-            images: ~
-            versionMin: ~
-            versionMax: ~
+    -
+      question: Which extensions allows to debug a PHP code?
+      answers:
+        - {answer: "phpdbg", valid: true}
+        - {answer: "xDebug", valid: true}
+        - {answer: "Debugger", valid: false}
+        - {answer: "SimpleDebug", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
