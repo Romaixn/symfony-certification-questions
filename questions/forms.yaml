@@ -1,0 +1,67 @@
+symfony-subject:
+    name: Controllers
+    questions:
+        -
+            question: Which command allows to get more informations about forms in Symfony ?
+            answers:
+                - {answer: "php bin/console form:debug", valid: false}
+                - {answer: "php bin/console debug:form", valid: true}
+                - {answer: "php bin/console debug:form:type", valid: false}
+                - {answer: "php bin/console debug:type", valid: false}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: |
+                Up to 6.1 version, how to pass a form to Twig in a controller ?
+                
+                ``` php
+                // 1
+                return $this->render('task/new.html.twig', [
+                    'form' => $form->createView(),
+                ]);
+                
+                // 2
+                return $this->render('task/new.html.twig', [
+                    'form' => $form,
+                ]);
+                
+                // 3
+                return $this->render('task/new.html.twig', [
+                    'form' => $form->getView(),
+                ]);
+                
+                // 4
+                return $this->renderForm('task/new.html.twig', [
+                    'form' => $form,
+                ]);
+                ```
+            answers:
+                - {answer: "1", valid: true}
+                - {answer: "2", valid: false}
+                - {answer: "3", valid: false}
+                - {answer: "4", valid: true}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: 6.1
+
+        -
+            question: |
+                Which theme will have the priority ?
+                
+                ``` yaml
+                # config/packages/twig.yaml
+                twig:
+                    form_themes: ['bootstrap_5_horizontal_layout.html.twig', 'tailwind_2_layout.html.twig']
+                ```
+
+            answers:
+                - {answer: "bootstrap_5_horizontal_layout.html.twig", valid: false}
+                - {answer: "tailwind_2_layout.html.twig", valid: true}
+            explanation: Last themes have a priority over the firsts
+            images: ~
+            versionMin: ~
+            versionMax: ~

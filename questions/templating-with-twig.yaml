@@ -1,0 +1,114 @@
+symfony-subject:
+    name: Templating with Twig
+    questions:
+        -
+            question: What variables doesn’t exist in the app global variable ?
+            answers:
+                - {answer: "app.user", valid: false}
+                - {answer: "app.query_params", valid: true}
+                - {answer: "app.request", valid: false}
+                - {answer: "app.theme", valid: true}
+                - {answer: "app.session", valid: false}
+                - {answer: "app.response", valid: true}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: What naming conventions are true about Twig ?
+            answers:
+                - {answer: "filenames must have two extensions (e.g. .html.twig, .xml.twig, …)", valid: true}
+                - {answer: "filenames can have .twig extension (this is an equivalent to .html.twig)", valid: false}
+                - {answer: "filenames and directories must use snake case (e.g. admin/default_theme/blog/base_index.html.twig)", valid: true}
+                - {answer: "filenames must use snake case and directories must use camelCase (e.g. admin/defaultTheme/blog/base_index.html.twig)", valid: false}
+                - {answer: "fragments filename must start like others filename (e.g. fragment.html.twig)", valid: false}
+                - {answer: "fragments filename must start with _ (e.g. _fragment.html.twig)", valid: true}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: |
+                What is the content result of child.html.twig ?
+                ``` twig
+                {# parent.html.twig #}
+                {% block sidebar %}
+                    <div class="parent">
+                        {# … #}
+                    </div>
+                {% endblock %}
+                
+                {# child.html.twig #}
+                {% extends 'parent.html.twig' %}
+                {% block sidebar %}
+                    <h3>Table of Contents</h3>
+                {% endblock %}
+                ```
+                
+                ``` twig
+                {# 1 #}
+                <div class="parent">
+                    <h3>Table of Contents</h3>
+                </div>
+                
+                {# 2 #}
+                <div class="parent"></div>
+                <h3>Table of Contents</h3>
+                
+                {# 3 #}
+                <h3>Table of Contents</h3>
+                <div class="parent"></div>
+                
+                {# 4 #}
+                <h3>Table of Contents</h3>
+                ```
+
+            answers:
+                - {answer: "1", valid: false}
+                - {answer: "2", valid: false}
+                - {answer: "3", valid: false}
+                - {answer: "4", valid: true}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: |
+                Can we reuse the content of parent sidebar block in child block ?
+                ``` twig
+                {# parent.html.twig #}
+                {% block sidebar %}
+                    <div class="parent">
+                        {# … #}
+                    </div>
+                {% endblock %}
+                
+                {# child.html.twig #}
+                {% extends 'parent.html.twig' %}
+                {% block sidebar %}
+                    <h3>Table of Contents</h3>
+                {% endblock %}
+                ```
+            answers:
+                - {answer: "Yes with {{ parent() }}", valid: true}
+                - {answer: "Yes with {{ sidebar() }}", valid: false}
+                - {answer: "No, it is not possible", valid: false}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~
+
+        -
+            question: Which statements about loops are true?
+            answers:
+                - {answer: "loop.length, loop.revindex, loop.revindex0 and loop.last are only available on PHP arrays or any object implementing the Countable interface", valid: true}
+                - {answer: "loop.index and loop.revindex start at 0", valid: false}
+                - {answer: "loop.parent exist", valid: true}
+                - {answer: "loop.size exist", valid: false}
+            explanation: ~
+            images: ~
+            versionMin: ~
+            versionMax: ~

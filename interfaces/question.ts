@@ -1,7 +1,7 @@
 interface QuestionInterface {
   question: string;
   answers: AnswerInterface[];
-  explanations: string[];
+  explanation: string;
   images: string[];
   versionMin: number|null;
   versionMax: number|null;

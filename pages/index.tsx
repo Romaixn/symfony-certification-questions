@@ -1,7 +1,15 @@
 import React, {useEffect, useState} from "react";
-import { symfonySubjects } from "@/questions/questions";
+import rehypeHighlight from 'rehype-highlight'
+import Markdown from "react-markdown";
+import { fetchQuestions } from "@/questions/questions";
 
-export default function Home() {
+export async function getStaticProps() {
+  return {
+    props: { symfonySubjects: fetchQuestions() }
+  }
+}
+
+export default function Home(props: any) {
   const [minVersion, setMinVersion] = useState<number>(0);
   const [maxVersion, setMaxVersion] = useState<number>(99);
   const [requestedSubject, setRequestedSubject] = useState<string>('All');
@@ -13,6 +21,8 @@ export default function Home() {
   useEffect(() => {
     getNewQuestion();
   }, [minVersion, maxVersion, requestedSubject]);
+
+  const symfonySubjects: Array<{subject: string, questions: QuestionInterface[]}> = props.symfonySubjects;
 
   const getNewQuestion = () => {
     setIsShowResult(false);
@@ -107,17 +117,21 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
-        <h1 className="text-2xl mb-4">{currentSubject} : {question?.question} {hasMultipleAnswers() && '(multiple answers)'}</h1>
+      <article>
+        <div className="mb-4">
+          <h1 className="text-2xl mb-2">{currentSubject}</h1>
+          <Markdown rehypePlugins={[rehypeHighlight]} className={'question'}>{question?.question}</Markdown>
+          <span>{hasMultipleAnswers() && '(multiple answers)'}</span>
 
-        {question?.images.length && question?.images.length > 0 ? (
-            <div className="flex flex-row gap-2 items-start mb-4">
-              {question?.images.map(image => {
-                return <img key={image} src={`/images/${image}`}  alt={'image pour la question'}/>
-              })}
-            </div>
-          ) : <></>
-        }
+          {question?.images?.length && question?.images.length > 0 ? (
+              <div className="flex flex-row gap-2 items-start mb-4">
+                {question?.images.map(image => {
+                  return <img key={image} src={`/images/${image}`}  alt={'image pour la question'}/>
+                })}
+              </div>
+            ) : <></>
+          }
+        </div>
 
         {question?.answers && question?.answers.length && (
           <div className="mb-4">
@@ -141,7 +155,7 @@ export default function Home() {
           )}
           {isShowResult && <button onClick={getNewQuestion} className="px-4 py-2 bg-green-400 rounded mb-4">Next question</button>}
         </div>
-      </div>
+      </article>
 
       {isShowResult && (
         <div className="border border-black rounded p-8">
@@ -159,7 +173,7 @@ export default function Home() {
               <label>Missing answer</label>
             </div>
           </div>
-          {question?.explanations.map(explanation => <p key={explanation} className="mb-1">{explanation}</p>) }
+          <Markdown rehypePlugins={[rehypeHighlight]} className="explanation mb-1">{question?.explanation}</Markdown>
           {question?.answers.map(answer => {
             const isChecked = checkedAnswers.find(checkedAnswers => checkedAnswers.answer === answer.answer) !== undefined;
             const isGoodAnswer = answer.valid;
