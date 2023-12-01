@@ -2,14 +2,15 @@ symfony-subject:
   name: Templating with Twig
   questions:
     -
-      question: What variables doesn’t exist in the app global variable ?
+      question: What variables exist in the app global variable ?
       answers:
-        - {answer: "app.user", valid: false}
-        - {answer: "app.query_params", valid: true}
-        - {answer: "app.request", valid: false}
-        - {answer: "app.theme", valid: true}
-        - {answer: "app.session", valid: false}
-        - {answer: "app.response", valid: true}
+        - {answer: "app.user", valid: true}
+        - {answer: "app.query_params", valid: false}
+        - {answer: "app.request", valid: true}
+        - {answer: "app.theme", valid: false}
+        - {answer: "app.session", valid: true}
+        - {answer: "app.response", valid: false}
+        - {answer: "app.flashes", valid: true}
       explanation: ~
       images: ~
       versionMin: ~

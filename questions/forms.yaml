@@ -181,8 +181,9 @@ symfony-subject:
                     'data_class' => Post::class,
                 ]);
             }
-            ```
-            What will be the value of the `required` option of `title`?
+        }
+        ```
+        What will be the value of the `required` option of `title`?
 
       answers:
         - { answer: "true", valid: true }
