@@ -114,3 +114,64 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+    -
+      question: |
+        Given
+        ```
+        # config/routes/hello.yaml
+        hello:
+            path: /hello
+            controller: App\Hello
+        ```
+        and
+        ``` php
+        # src/Hello.php
+        <?php
+  
+        namespace App;
+  
+        use Symfony\Component\HttpFoundation\Response;
+  
+        class Hello
+        {
+            public function __invoke(): Response
+            {
+                return new Response('Hello world');
+            }
+        }
+        ```
+        What produces `GET /hello`?
+      answers:
+        - { answer: "404 error", valid: false }
+        - { answer: "500 error", valid: false }
+        - { answer: "Hello world", valid: true }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: How can I have a `/` in a query parameter?
+      answers:
+        - { answer: "It's not possible", valid: false }
+        - { answer: "set requirements option for the parameter", valid: true }
+        - { answer: "add allow_slash option for the parameter", valid: false }
+      explanation: |
+        ``` php
+        #[Route('/dummy/{token}', requirements: ['token' => '.+'])
+        ```
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: How to retrieve the query parameter foo in a controller?
+      answers:
+        - { answer: "$this->getParameter('foo')", valid: false }
+        - { answer: "$request->query->get('foo')", valid: true }
+        - { answer: "add #[MapQueryParameter] before the controller function parameter $foo", valid: true }
+      explanation: ~
+      images: ~
+      versionMin: "6.3"
+      versionMax: ~
