@@ -1,3 +1,38 @@
 symfony-subject:
   name: Console
-  questions: ~
+  questions:
+    -
+      question: Which code is returned when command return `Command::SUCCESS`?
+      answers:
+        - {answer: "bool(true)", valid: false}
+        - {answer: "int(0)", valid: true}
+        - {answer: "int(1)", valid: false}
+        - {answer: "int(2)", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: Wich returns are valids in a command?
+      answers:
+        - {answer: "return Command::FAILURE;", valid: true}
+        - {answer: "return Command::INVALID;", valid: true}
+        - {answer: "return 1;", valid: true}
+        - {answer: "return 2;", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: How to get the version of a command?
+      answers:
+        - {answer: "-v", valid: false}
+        - {answer: "--version", valid: true}
+        - {answer: "-V", valid: true}
+        - {answer: "version", valid: false}
+      explanation: 1 is verbose
+      images: ~
+      versionMin: ~
+      versionMax: ~

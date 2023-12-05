@@ -121,3 +121,15 @@ symfony-subject:
         images: ~
         versionMin: ~
         versionMax: ~
+
+    -
+        question: Wich event is dispatched when impersonation is completed?
+        answers:
+            - { answer: "security.impersonation", valid: false }
+            - { answer: "impersonation.security", valid: false }
+            - { answer: "security.user_switch", valid: false }
+            - { answer: "security.switch_user", valid: true }
+        explanation: ~
+        images: ~
+        versionMin: ~
+        versionMax: ~

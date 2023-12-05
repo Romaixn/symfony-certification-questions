@@ -6,9 +6,9 @@ symfony-subject:
         Given
         ``` php
         <?php
-  
+
         use Symfony\Component\Validator\Constraints as Assert;
-  
+
         class User
         {
           #[Assert\NotBlank]
@@ -31,6 +31,31 @@ symfony-subject:
         - {answer: "add `#[Assert\\GroupPriority(['strict' => 999])]` at class level", valid: false}
         - {answer: "it's not possible", valid: false}
       explanation: "`#[Assert\\GroupSequence(['Default', 'strict'])]` will cause an infinite loop"
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: Among the following validations, which ones exist?
+      answers:
+        - {answer: "`IsNull`", valid: true}
+        - {answer: "`Phone`", valid: false}
+        - {answer: "`Email`", valid: true}
+        - {answer: "`CssColor`", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: |
+        With the following GroupSequence: `[['User', 'Premium'], 'Api']`, which groups will be validated if User fails?
+      answers:
+        - {answer: "The groups User, Premium, and Api", valid: false}
+        - {answer: "Only the User group will be validated", valid: false}
+        - {answer: "The groups User and Premium", valid: true}
+        - {answer: "No group", valid: false}
+      explanation: ~
       images: ~
       versionMin: ~
       versionMax: ~

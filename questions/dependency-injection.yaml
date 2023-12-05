@@ -1,0 +1,47 @@
+symfony-subject:
+  name: Dependency injection
+  questions:
+    -
+      question: Is it possible to use autowiring with an interface?
+      answers:
+        - {answer: "Yes, without doing anything", valid: false}
+        - {answer: "Yes, by adding an alias in the configuration", valid: true}
+        - {answer: "No, it's impossible", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: Is it conceivable to employ autowiring with an interface that encompasses multiple implementations?
+      answers:
+        - {answer: "Yes, by specifying a default implementation in the configuration.", valid: true}
+        - {answer: "No, it will be necessary to eliminate implementations to retain only one.", valid: false}
+        - {answer: "Yes, Symfony will discern the optimal implementation.", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: Is it feasible to restrict a service to a specific environment?
+      answers:
+        - {answer: "Yes, utilizing the #[Env] attribute.", valid: false}
+        - {answer: "No, it is not feasible.", valid: false}
+        - {answer: "Yes, employing the #[When()] attribute.", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: What is the syntax for specifying that an argument of a service is a service and not a string in the configuration?
+      answers:
+        - {answer: "#logger", valid: false}
+        - {answer: "@logger", valid: true}
+        - {answer: "&logger", valid: false}
+        - {answer: "~logger", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~

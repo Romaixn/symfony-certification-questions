@@ -17,28 +17,28 @@ symfony-subject:
         What will be the type specified in the output?
         ``` php
         <?php
-        
+
         class Foo
         {
             public function hello(): static|self {
                 return new static;
             }
         }
-        
+
         class Bar extends Foo
         {
             public function bar(): parent|self {
                 return (new Foo)->hello();
             }
         }
-        
+
         class Baz extends Bar
         {
             public function baz() {
                 return $this->bar();
             }
         }
-        
+
         var_dump((new Baz)->baz());
         ```
       answers:
@@ -239,29 +239,29 @@ symfony-subject:
         trait A
         {
             private string $response = '0';
-        
+
             function multiplication() {
                 return "3 * 0";
             }
         }
-        
+
         trait B
         {
             function division() {
                 return "3 / 0";
             }
         }
-        
+
         class Hello
         {
             use A;
             use B;
-        
+
             function foo() {
                 return sprintf('%s = %s', $this->response ? $this->multiplication() : $this->division, $this->response);
             }
         }
-        
+
         var_dump((new Hello())->foo());
         ```
       answers:
@@ -318,7 +318,31 @@ symfony-subject:
         - {answer: "ksort()", valid: false}
         - {answer: "uksort()", valid: false}
         - {answer: "asort()", valid: true}
-      explanation: ~
+      explanation: |
+        **[suffix] assoc - additional index check. Compares both value and index.**
+        Example: array_diff_assoc, array_intersect_assoc.
+
+        **[suffix] key - index only check. Ignores value of array, compares only indexes.**
+        Example: array_diff_key, array_intersect_key.
+
+        **[suffix] **empty** - no "key" or "assoc" word in suffix. Compares values only. Ignores indexes of array.**
+        Example: array_diff, array_intersect.
+
+        **[prefix] u - will do comparison with user defined function. Letter u can be used twice in some functions (like array_udiff_uassoc), this means that you have to use 2 functions (one for value, one for index).**
+        Example: array_udiff_uassoc, array_uintersect_assoc.
+
+        This also works with array sort functions:
+        **[prefix] a - associative. Will preserve keys.**
+        Example: arsort, asort.
+
+        **[prefix] k - key sort. Will sort array by keys.**
+        Example: uksort, ksort.
+
+        **[prefix] r - reverse. Will sort array in reverse order.**
+        Example: rsort, krsort.
+
+        **[prefix] u - sort by user defined function (same as for diff/intersect).**
+        Example: usort, uasort.
       images: ~
       versionMin: ~
       versionMax: ~

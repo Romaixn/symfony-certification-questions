@@ -6,10 +6,10 @@ export const fetchQuestions = () => {
 
   const filenames = [
       // 'automated-tests.yaml',
-      // 'console.yaml',
+      'console.yaml',
       'controllers.yaml',
       'data-validation.yaml',
-      // 'dependency-injection.yaml,
+      'dependency-injection.yaml',
       'forms.yaml',
       'http.yaml',
       // 'http-caching.yaml',
