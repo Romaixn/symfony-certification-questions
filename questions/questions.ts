@@ -13,7 +13,7 @@ export const fetchQuestions = () => {
       'forms.yaml',
       'http.yaml',
       // 'http-caching.yaml',
-      // 'miscellaneous.yaml',
+      'miscellaneous.yaml',
       'php.yaml',
       'routing.yaml',
       'security.yaml',

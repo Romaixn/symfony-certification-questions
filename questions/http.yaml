@@ -203,3 +203,28 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+    -
+      question: Which HTTP response header instructs a cache to send a request to the origin server for validation before releasing a cached copy?
+      answers:
+        - {answer: "Cache-control: no-store", valid: false}
+        - {answer: "Cache-control: private", valid: false}
+        - {answer: "Cache-control: no-cache", valid: false}
+        - {answer: "Cache-control: must-revalidate", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: What are the HTTP status codes for client errors?
+      answers:
+        - {answer: "2xx", valid: false}
+        - {answer: "3xx", valid: false}
+        - {answer: "4xx", valid: true}
+        - {answer: "5xx", valid: false}
+        - {answer: "1xx", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~

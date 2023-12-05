@@ -45,3 +45,15 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+    -
+      question: Given the symfony cache is warmed, which configuration format is the most efficient for the container when registering new services or routes?
+      answers:
+        - {answer: "XML", valid: false}
+        - {answer: "None of them.", valid: true}
+        - {answer: "YAML", valid: false}
+        - {answer: "PHP", valid: false}
+      explanation: No matter what is the format used, Symfony transform the initial configuration format to pure php.
+      images: ~
+      versionMin: ~
+      versionMax: ~

@@ -40,28 +40,28 @@ symfony-subject:
                 {# … #}
             </div>
         {% endblock %}
-        
+
         {# child.html.twig #}
         {% extends 'parent.html.twig' %}
         {% block sidebar %}
             <h3>Table of Contents</h3>
         {% endblock %}
         ```
-        
+
         ``` twig
         {# 1 #}
         <div class="parent">
             <h3>Table of Contents</h3>
         </div>
-        
+
         {# 2 #}
         <div class="parent"></div>
         <h3>Table of Contents</h3>
-        
+
         {# 3 #}
         <h3>Table of Contents</h3>
         <div class="parent"></div>
-        
+
         {# 4 #}
         <h3>Table of Contents</h3>
         ```
@@ -86,7 +86,7 @@ symfony-subject:
                 {# … #}
             </div>
         {% endblock %}
-        
+
         {# child.html.twig #}
         {% extends 'parent.html.twig' %}
         {% block sidebar %}
@@ -110,6 +110,31 @@ symfony-subject:
         - {answer: "loop.parent exist", valid: true}
         - {answer: "loop.size exist", valid: false}
       explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: Which of the following is not a function?
+      answers:
+        - {answer: "range", valid: false}
+        - {answer: "parent", valid: true}
+        - {answer: "source", valid: false}
+        - {answer: "set", valid: false}
+        - {answer: "template_from_string", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: Which internal method is called when using the deprecated tag?
+      answers:
+        - {answer: "sprintf", valid: false}
+        - {answer: "user_error()", valid: false}
+        - {answer: "error_log()", valid: false}
+        - {answer: "rigger_error()", valid: true}
+      explanation: https://twig.symfony.com/doc/3.x/tags/deprecated.html
       images: ~
       versionMin: ~
       versionMax: ~

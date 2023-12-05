@@ -382,3 +382,47 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+    -
+      question: |
+        What is the output ?
+        ``` php
+        <?php
+        $array = ['a1' => 'x', 'a2' => 'e', 'a3' => 'z'];
+        asort($array);
+
+        foreach ($array as $keys => $values) {
+            print "$keys = $values";
+        }
+        ```
+      answers:
+        - {answer: "An error", valid: false}
+        - {answer: "0 = e 1 =x 2 = z", valid: false}
+        - {answer: "a1 = e a2 = x a3 = z", valid: false}
+        - {answer: "a2 = e a1 = x a3 = z", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: |
+        Consider the following code snippet:
+        ``` php
+        try {
+            call_this_undefined_function();
+        } catch (???? $e) {
+            echo 'Oups, there is a serious problem there!';
+        }}
+        ```
+        Since PHP 7.0, which type/class could be used to replace the ???? placeholder in order to output Oups, there is a serious problem there! ?
+      answers:
+        - {answer: "ErrorException", valid: false}
+        - {answer: "Exception", valid: false}
+        - {answer: "BadFunctionCallException", valid: false}
+        - {answer: "Error", valid: true}
+        - {answer: "Warning", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~

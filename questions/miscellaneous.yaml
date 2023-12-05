@@ -1,3 +1,54 @@
 symfony-subject:
   name: Miscellaneous
-  questions: ~
+  questions:
+    -
+      question: What is the purpose of Symfony\Component\Debug\ErrorHandler class?
+      answers:
+        - {answer: "Catches PHP errors and pass them to a custom function", valid: false}
+        - {answer: "Catches PHP errors and exceptions and converts them to a nice PHP response", valid: true}
+        - {answer: "Catches PHP errors and converts them to a nice PHP response", valid: false}
+        - {answer: "Catches PHP errors and converts them to exceptions", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: Which exception is thrown when the origin file does not exist when you use the Symfony\Component\Filesystem\Filesystem::copy method?
+      answers:
+        - {answer: "FileErrorException", valid: false}
+        - {answer: "FileException", valid: false}
+        - {answer: "FilesystemException", valid: false}
+        - {answer: "FileNotFoundException", valid: true}
+        - {answer: "FileNotExistException", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: What are the options for configuring the session with cookies in the FrameworkBundle Configuration (framework)?
+      answers:
+        - {answer: "cookie_lifetime", valid: true}
+        - {answer: "use_cookie", valid: false}
+        - {answer: "cookie_httponly", valid: true}
+        - {answer: "cookie_domain", valid: true}
+        - {answer: "force_cookie", valid: false}
+        - {answer: "cookie_path", valid: true}
+        - {answer: "cookie_secure", valid: true}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+    -
+      question: What is the 2nd argument of Symfony\Component\Config\ConfigCacheFactory::cache method?
+      answers:
+        - {answer: "A callback executed if the cache has to be refreshed", valid: true}
+        - {answer: "The resource filename", valid: false}
+        - {answer: "An array of options", valid: false}
+        - {answer: "A boolean to set the debug mode", valid: false}
+      explanation: https://github.com/symfony/symfony/blob/2.7/src/Symfony/Component/Config/ConfigCacheFactory.php
+      images: ~
+      versionMin: ~
+      versionMax: ~

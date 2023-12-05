@@ -66,3 +66,14 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+
+    -
+      question: According to the official Symfony Best Practices Guide, is it useful to spend time and effort writing tests that check if your application pages are successfully loading?
+      answers:
+        - {answer: "Yes", valid: true}
+        - {answer: "No", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~

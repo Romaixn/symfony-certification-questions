@@ -36,3 +36,16 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+    -
+      question: Which of the following constants do not exist?
+      answers:
+        - {answer: "Symfony\\Component\\Console\\Input\\InputArgument::IS_ARRAY", valid: false}
+        - {answer: "Symfony\\Component\\Console\\Input\\InputArgument::NONE", valid: true}
+        - {answer: "Symfony\\Component\\Console\\Input\\InputArgument::REQUIRED", valid: false}
+        - {answer: "Symfony\\Component\\Console\\Input\\InputArgument::NEGATABLE", valid: true}
+        - {answer: "Symfony\\Component\\Console\\Input\\InputArgument::OPTIONAL", valid: false}
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~

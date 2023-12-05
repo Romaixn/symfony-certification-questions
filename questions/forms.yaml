@@ -218,3 +218,28 @@ symfony-subject:
       images: ~
       versionMin: ~
       versionMax: ~
+
+    -
+      question: Which of these extensions are a built-in ones ?
+      answers:
+        - { answer: "DependencyInjectionExtension", valid: true }
+        - { answer: "HttpFoundationRequestHandler", valid: false }
+        - { answer: "DataCollectorExtension", valid: true }
+        - { answer: "HttpFoundationExtension", valid: true }
+      explanation: ~
+      images: ~
+      versionMin: ~
+      versionMax: ~
+
+
+    -
+      question: By default, which function provides the choices of the Symfony\Component\Form\Extension\Core\Type\CountryType form type?
+      answers:
+        - { answer: "Symfony\\Component\\Intl\\Countries::getNames()", valid: true }
+        - { answer: "Symfony\\Component\\Locale\\getDisplayCountries()", valid: false }
+        - { answer: "Intl::getCountries()", valid: false }
+        - { answer: "Symfony\\Component\\Form\\Extension\\Core\\Type\\CountryType::getChoices()", valid: false }
+      explanation: https://symfony.com/doc/current/reference/forms/types/country.html#choices
+      images: ~
+      versionMin: 4.0
+      versionMax: ~
